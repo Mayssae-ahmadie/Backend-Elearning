@@ -38,10 +38,11 @@ const getAssessmentByID = async (req, res) => {
 
 const addAssessment = async (req, res) => {
     const { assesment_title, duration, lesson_id, question } = req.body;
+    console.log(req.body);
     try {
         const result = await db.query(
-            `INSERT INTO assessment (assesment_title, duration, lesson_id, question) VALUES (?,?,?,?);`,
-            [assessment_id, assesment_title, duration, lesson_id, question]
+            `INSERT INTO assessment (assessment_title, duration, lesson_id, question) VALUES (?,?,?,?);`,
+            [assesment_title, duration, lesson_id, question]
         );
         console.log(result);
         res.status(200).json({
