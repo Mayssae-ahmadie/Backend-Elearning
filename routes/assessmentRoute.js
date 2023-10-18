@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const {
     getAllAssessment,
+    getAssessmentByID,
     addAssessment,
     updateAssessmentByID,
     deleteAssessmentByID,
-    getAssessmentByID,
 } = require('../controllers/assessmentController');
 
 router.get('/getAll', getAllAssessment);

@@ -5,7 +5,7 @@ const getAllAssessment = async (req, res) => {
         const [result] = await db.query(`SELECT * FROM assessment`);
         res.status(200).json({
             success: true,
-            message: 'Assessment data retrieved successfully',
+            message: 'Assessment retrieved successfully',
             data: result,
         });
     } catch (error) {
@@ -24,7 +24,7 @@ const getAssessmentByID = async (req, res) => {
         ]);
         res.status(200).json({
             success: true,
-            message: 'Assessment data retrieved successfully',
+            message: 'Assessment retrieved successfully',
             data: result,
         });
     } catch (error) {
