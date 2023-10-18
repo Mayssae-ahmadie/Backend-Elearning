@@ -3,15 +3,15 @@ const router = express.Router();
 const {
     getAllAssessment,
     addAssessment,
-    deleteAssessment,
-    updateAssessement,
+    updateAssessmentByID,
+    deleteAssessmentByID,
     getAssessmentByID,
 } = require('../controllers/assessmentController');
 
 router.get('/getAll', getAllAssessment);
 router.get('/get/:id', getAssessmentByID);
 router.post('/add', addAssessment);
+router.put('/update/:id', updateAssessmentByID);
 router.delete('/delete/:id', deleteAssessmentByID);
-router.put('/update/:id', updateAssessementByID)
 
 module.exports = router;
