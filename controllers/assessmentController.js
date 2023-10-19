@@ -59,12 +59,12 @@ const addAssessment = async (req, res) => {
 };
 
 const updateAssessmentByID = async (req, res) => {
-    const { assesment_title, duration, lesson_id, question } = req.body;
+    const { assessment_title, duration, lesson_id, question } = req.body;
     try {
         const result = await db.query(
-            UPDATE Assessment SET assesment_title =?, duration =?, lesson_id =?, question =? WHERE assessment_id = ?, [
-            assesment_title, duration, lesson_id, question, req.params.id
-        ]);
+            "UPDATE assessment SET assessment_title = ?, duration = ?, lesson_id = ?, question = ? WHERE assessment_id = ?",
+            [assessment_title, duration, lesson_id, question, req.params.id]
+        );
 
         console.log(result);
         res.status(200).json({
@@ -76,7 +76,7 @@ const updateAssessmentByID = async (req, res) => {
         res.status(400).json({
             success: false,
             message: 'Unable to update assessment',
-            error,
+            error: error.message,
         });
     }
 };
