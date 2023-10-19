@@ -58,7 +58,7 @@ const addAssessment = async (req, res) => {
     }
 };
 
-const updateAssessmentByID = async (req, res) => {
+const updateAssessment = async (req, res) => {
     const { assessment_title, duration, lesson_id, question } = req.body;
     try {
         const result = await db.query(
@@ -109,4 +109,4 @@ const deleteAssessmentByID = async (req, res) => {
     }
 };
 
-module.exports = { getAllAssessment, getAssessmentByID, addAssessment, updateAssessmentByID, deleteAssessmentByID };
+module.exports = { getAllAssessment, getAssessmentByID, addAssessment, updateAssessment, deleteAssessmentByID };
