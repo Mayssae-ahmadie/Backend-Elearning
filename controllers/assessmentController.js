@@ -19,7 +19,7 @@ const getAllAssessment = async (req, res) => {
 
 const getAssessmentByID = async (req, res) => {
     try {
-        const [result] = await db.query(`SELECT * FROM assessment WHERE id = ?`, [
+        const [result] = await db.query(`SELECT * FROM assessment WHERE assessment_id = ?`, [
             req.params.id,
         ]);
         res.status(200).json({
@@ -59,10 +59,14 @@ const addAssessment = async (req, res) => {
 };
 
 const updateAssessmentByID = async (req, res) => {
+    const { assesment_title, duration, lesson_id, question } = req.body;
     try {
-        const [result] = await db.query(`SELECT * FROM assessment WHERE id = ?`, [
-            req.params.id,
+        const result = await db.query(
+            UPDATE Assessment SET assesment_title =?, duration =?, lesson_id =?, question =? WHERE assessment_id = ?, [
+            assesment_title, duration, lesson_id, question, req.params.id
         ]);
+
+        console.log(result);
         res.status(200).json({
             success: true,
             message: 'Assessment updated successfully',
@@ -79,19 +83,28 @@ const updateAssessmentByID = async (req, res) => {
 
 const deleteAssessmentByID = async (req, res) => {
     try {
-        const [result] = await db.query(`SELECT * FROM assessment WHERE id = ?`, [
+        const [result] = await db.query(`DELETE FROM assessment WHERE assessment_id = ?`, [
             req.params.id,
         ]);
-        res.status(200).json({
-            success: true,
-            message: 'Assessment deleted successfully',
-            data: result,
-        });
+
+        console.log(result);
+
+        if (result.affectedRows > 0) {
+            res.status(204).json({
+                success: true,
+                message: 'Assessment deleted successfully',
+            });
+        } else {
+            res.status(404).json({
+                success: false,
+                message: 'Assessment not found',
+            });
+        }
     } catch (error) {
         res.status(400).json({
             success: false,
             message: 'Unable to delete assessment',
-            error,
+            error: error.message
         });
     }
 };
