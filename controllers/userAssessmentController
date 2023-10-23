@@ -62,7 +62,7 @@ const updateUserAssessmentbyID = async (req, res) => {
     const { user_id, assessment_id, submission } = req.body;
     try {
         const result = await db.query(
-            "UPDATE user_assessment SET user_id = ?, assessment_id = ?, submission = ? WHERE assessment_id = ?",
+            "UPDATE user_assessment SET user_id = ?, assessment_id = ?, submission = ? WHERE feedback_id = ?",
             [user_id, assessment_id, submission, req.params.id]
         );
 
