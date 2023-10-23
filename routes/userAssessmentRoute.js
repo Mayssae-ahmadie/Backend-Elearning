@@ -5,6 +5,7 @@ const {
     getUserAssessmentByID,
     addUserAssessment,
     updateUserAssessmentbyID,
+    deleteUserAssessmentByID,
 } = require('../controllers/userAssessmentController');
 
 router.get('/getAll', getAllUserAssessment);

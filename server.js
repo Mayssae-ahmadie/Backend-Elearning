@@ -6,7 +6,7 @@ const PORT = process.env.PORT;
 const cors = require('cors');
 require('./config/db');
 const assessmentRoutes = require('./routes/assessmentRoute');
-const userAssessmentRoutes = require('routes/userAssessmentRoute');
+const userAssessmentRoutes = require('./routes/userAssessmentRoute');
 
 app.use(bodyParser.json());
 app.use('/assessment', assessmentRoutes);
