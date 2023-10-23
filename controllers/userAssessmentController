@@ -41,7 +41,7 @@ const addUserAssessment = async (req, res) => {
     console.log(req.body);
     try {
         const result = await db.query(
-            `INSERT INTO assessment (user_id, assessment_id, submission) VALUES (?,?,?);`,
+            `INSERT INTO user_assessment (user_id, assessment_id, submission) VALUES (?,?,?);`,
             [user_id, assessment_id, submission]
         );
         console.log(result);
@@ -62,7 +62,7 @@ const updateUserAssessmentbyID = async (req, res) => {
     const { user_id, assessment_id, submission } = req.body;
     try {
         const result = await db.query(
-            "UPDATE assessment SET user_id = ?, assessment_id = ?, submission = ? WHERE assessment_id = ?",
+            "UPDATE user_assessment SET user_id = ?, assessment_id = ?, submission = ? WHERE assessment_id = ?",
             [user_id, assessment_id, submission, req.params.id]
         );
 
@@ -83,7 +83,7 @@ const updateUserAssessmentbyID = async (req, res) => {
 
 const deleteUserAssessmentByID = async (req, res) => {
     try {
-        const [result] = await db.query(`DELETE FROM assessment WHERE assessment_id = ?`, [
+        const [result] = await db.query(`DELETE FROM user_assessment WHERE assessment_id = ?`, [
             req.params.id,
         ]);
 
